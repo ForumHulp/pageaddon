@@ -52,7 +52,7 @@ class listener implements EventSubscriberInterface
 	public function display_content($event)
 	{
 		$content_html_enabled = $event['content_html_enabled'];
-		
+
 		if ($content_html_enabled)
 		{
 			$content = $event['content'];
@@ -63,7 +63,7 @@ class listener implements EventSubscriberInterface
 			{
 				$start = ($start < 0) ? 0 : floor(($total_posts) / 1) * 1;
 			}
-			
+
 			$pagination = $this->phpbb_container->get('pagination');
 			$base_url = append_sid($event['route']);
 			$pagination->generate_template_pagination($base_url, 'pagination', 'start', $total_posts, 1, $start);
@@ -76,7 +76,7 @@ class listener implements EventSubscriberInterface
 		$this->template->assign_vars(array(
 			'S_REPLACE_PAGES_EDITOR'			=> true,
 			'L_ACP_PAGES_FORM_CONTENT_EXPLAIN'	=> $this->user->lang['WYSIWYG_TEXT']
-		));		
+		));
 	}
 
 	public function load_language_on_setup($event)
