@@ -44,7 +44,7 @@ class listener implements EventSubscriberInterface
 	{
 		return array(
 			'core.user_setup'							=> 'load_language_on_setup',
-			'phpbb.pages.modify_content'				=> 'modify_content',
+			'phpbb.pages.acp_modify_content'			=> 'modify_content',
 			'phpbb.pages.modify_content_for_display'	=> 'display_content'
 		);
 	}
