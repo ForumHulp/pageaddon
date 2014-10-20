@@ -2,9 +2,9 @@ services:
     forumhulp.pageaddon.listener:
         class: forumhulp\pageaddon\event\listener
         arguments:
-            - @user
-            - @template
-            - @service_container
+            - @pagination
             - @request
+            - @template
+            - @user
         tags:
             - { name: event.listener }
