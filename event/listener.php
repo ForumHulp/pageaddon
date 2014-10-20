@@ -20,8 +20,6 @@ use Symfony\Component\DependencyInjection\Container;
 */
 class listener implements EventSubscriberInterface
 {
-	/** @var helper */
-	protected $helper;
 	/** @var user */
 	protected $user;
 	/** @var template */
@@ -31,9 +29,8 @@ class listener implements EventSubscriberInterface
 	/** @var request */
 	protected $request;
 
-	public function __construct(\phpbb\controller\helper $helper, \phpbb\user $user, \phpbb\template\template $template, Container $phpbb_container, $request)
+	public function __construct(\phpbb\user $user, \phpbb\template\template $template, Container $phpbb_container, $request)
 	{
-		$this->helper = $helper;
 		$this->user = $user;
 		$this->template = $template;
 		$this->phpbb_container = $phpbb_container;
@@ -43,7 +40,6 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup'							=> 'load_language_on_setup',
 			'phpbb.pages.acp_modify_content'			=> 'modify_content',
 			'phpbb.pages.modify_content_for_display'	=> 'display_content'
 		);
@@ -73,19 +69,10 @@ class listener implements EventSubscriberInterface
 
 	public function modify_content()
 	{
+		$this->user->add_lang_ext('forumhulp/pageaddon', 'pageaddon');
 		$this->template->assign_vars(array(
 			'S_REPLACE_PAGES_EDITOR'			=> true,
 			'L_ACP_PAGES_FORM_CONTENT_EXPLAIN'	=> $this->user->lang['WYSIWYG_TEXT']
 		));
-	}
-
-	public function load_language_on_setup($event)
-	{
-		$lang_set_ext = $event['lang_set_ext'];
-		$lang_set_ext[] = array(
-			'ext_name' => 'forumhulp/pageaddon',
-			'lang_set' => 'pageaddon',
-		);
-		$event['lang_set_ext'] = $lang_set_ext;
 	}
 }

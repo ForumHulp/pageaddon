@@ -2,7 +2,6 @@ services:
     forumhulp.pageaddon.listener:
         class: forumhulp\pageaddon\event\listener
         arguments:
-            - @controller.helper
             - @user
             - @template
             - @service_container
