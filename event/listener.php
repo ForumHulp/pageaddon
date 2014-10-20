@@ -46,12 +46,10 @@ class listener implements EventSubscriberInterface
 
 	public function display_content($event)
 	{
-		$content_html_enabled = $event['content_html_enabled'];
-
-		if ($content_html_enabled)
+		if ($event['content_html_enabled'])
 		{
 			$content = $event['content'];
-			$content = explode( "<!-- pagebreak -->", $content);
+			$content = explode( '<!-- pagebreak -->', $content);
 			$total_pages = sizeof($content);
 			$start = $this->request->variable('start', 0);
 			if ($start < 0 || $start > $total_pages)
@@ -61,8 +59,8 @@ class listener implements EventSubscriberInterface
 
 			$base_url = append_sid($event['route']);
 			$this->pagination->generate_template_pagination($base_url, 'pagination', 'start', $total_pages, 1, $start);
+			$event['content'] = $content[$start];
 		}
-		$event['content'] = $content[$start];
 	}
 
 	public function display_wysiwyg()
