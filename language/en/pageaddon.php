@@ -18,5 +18,5 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'WYSIWYG_TEXT'	=> 'This page is now transformed in a html editor with pageaddon from <a href="http://forumhulp.com" target="_blank">ForumHulp.com</a>. BB-codes don\'t work on this page anymore and it\'s transformed into a wysiwyg editor. You also can use pagination now by inserting page-breaks into your html text.'
+	'WYSIWYG_TEXT'	=> 'This page has been transformed into a WYSIWYG HTML editor with pageaddon from <a href="http://forumhulp.com" target="_blank">ForumHulp.com</a>. BBCodes will not work with this add-on. You can add pagination to your pages by inserting “Page Breaks” from the Insert menu.'
 ));

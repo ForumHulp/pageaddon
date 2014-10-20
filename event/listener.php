@@ -39,7 +39,7 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'phpbb.pages.acp_modify_content'			=> 'modify_content',
+			'phpbb.pages.acp_add_edit_page'				=> 'display_wysiwyg',
 			'phpbb.pages.modify_content_for_display'	=> 'display_content'
 		);
 	}
@@ -65,12 +65,9 @@ class listener implements EventSubscriberInterface
 		$event['content'] = $content[$start];
 	}
 
-	public function modify_content()
+	public function display_wysiwyg()
 	{
 		$this->user->add_lang_ext('forumhulp/pageaddon', 'pageaddon');
-		$this->template->assign_vars(array(
-			'S_REPLACE_PAGES_EDITOR'			=> true,
-			'L_ACP_PAGES_FORM_CONTENT_EXPLAIN'	=> $this->user->lang['WYSIWYG_TEXT']
-		));
+		$this->template->assign_var('S_REPLACE_PAGES_EDITOR', true);
 	}
 }
