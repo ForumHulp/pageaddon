@@ -39,8 +39,8 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'phpbb.pages.acp_add_edit_page'				=> 'display_wysiwyg',
-			'phpbb.pages.modify_content_for_display'	=> 'display_content'
+			'phpbb.pages.acp_add_edit_page'				=> 'display_tinymce',
+			'phpbb.pages.modify_content_for_display'	=> 'display_content',
 		);
 	}
 
@@ -63,7 +63,7 @@ class listener implements EventSubscriberInterface
 		}
 	}
 
-	public function display_wysiwyg()
+	public function display_tinymce()
 	{
 		$this->user->add_lang_ext('forumhulp/pageaddon', 'pageaddon');
 		$this->template->assign_var('S_REPLACE_PAGES_EDITOR', true);
