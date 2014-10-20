@@ -13,28 +13,27 @@ namespace forumhulp\pageaddon\event;
 * @ignore
 */
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\DependencyInjection\Container;
 
 /**
 * Event listener
 */
 class listener implements EventSubscriberInterface
 {
-	/** @var user */
-	protected $user;
-	/** @var template */
-	protected $template;
-	/** @var Container */
-	protected $phpbb_container;
-	/** @var request */
+	/** @var \phpbb\pagination */
+	protected $pagination;
+	/** @var \phpbb\request\request */
 	protected $request;
+	/** @var \phpbb\template\template */
+	protected $template;
+	/** @var \phpbb\user */
+	protected $user;
 
-	public function __construct(\phpbb\user $user, \phpbb\template\template $template, Container $phpbb_container, $request)
+	public function __construct(\phpbb\pagination $pagination, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user)
 	{
-		$this->user = $user;
-		$this->template = $template;
-		$this->phpbb_container = $phpbb_container;
+		$this->pagination = $pagination;
 		$this->request = $request;
+		$this->template = $template;
+		$this->user = $user;
 	}
 
 	static public function getSubscribedEvents()
@@ -53,16 +52,15 @@ class listener implements EventSubscriberInterface
 		{
 			$content = $event['content'];
 			$content = explode( "<!-- pagebreak -->", $content);
-			$total_posts = sizeof($content);
+			$total_pages = sizeof($content);
 			$start = $this->request->variable('start', 0);
-			if ($start < 0 || $start > $total_posts)
+			if ($start < 0 || $start > $total_pages)
 			{
-				$start = ($start < 0) ? 0 : floor(($total_posts) / 1) * 1;
+				$start = ($start < 0) ? 0 : floor(($total_pages) / 1) * 1;
 			}
 
-			$pagination = $this->phpbb_container->get('pagination');
 			$base_url = append_sid($event['route']);
-			$pagination->generate_template_pagination($base_url, 'pagination', 'start', $total_posts, 1, $start);
+			$this->pagination->generate_template_pagination($base_url, 'pagination', 'start', $total_pages, 1, $start);
 		}
 		$event['content'] = $content[$start];
 	}
