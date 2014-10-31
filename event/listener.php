@@ -52,11 +52,8 @@ class listener implements EventSubscriberInterface
 			$content = explode( '<!-- pagebreak -->', $content);
 			$total_pages = sizeof($content);
 			$start = $this->request->variable('start', 0);
-			if ($start < 0 || $start > $total_pages)
-			{
-				$start = ($start < 0) ? 0 : floor(($total_pages) / 1) * 1;
-			}
 
+			$start = $this->pagination->validate_start($start, 1, $total_pages);
 			$base_url = append_sid($event['route']);
 			$this->pagination->generate_template_pagination($base_url, 'pagination', 'start', $total_pages, 1, $start);
 			$event['content'] = $content[$start];

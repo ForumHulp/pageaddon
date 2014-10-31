@@ -3,7 +3,7 @@
     "type": "phpbb-extension",
     "description": "WYSIWYG tinyMCE addon voor official pages extension",
     "homepage": "http://forumhulp.com",
-    "version": "3.1.0.RC5",
+    "version": "3.1.0",
     "keywords": ["style", "forumhulp", "phpbb", "extension", "upload", "unzip", "zip"],
     "license": "GPL-2.0",
     "authors": [
