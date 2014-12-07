@@ -63,6 +63,10 @@ class listener implements EventSubscriberInterface
 	public function display_tinymce()
 	{
 		$this->user->add_lang_ext('forumhulp/pageaddon', 'pageaddon');
-		$this->template->assign_var('S_REPLACE_PAGES_EDITOR', true);
+		$this->template->assign_vars(array(
+			'S_REPLACE_PAGES_EDITOR'	=> true,
+			'LANG_EDITOR'				=> ($this->user->data['user_lang'] == 'nl') ? 'nl' : 'en'
+			)
+		);
 	}
 }

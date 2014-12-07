@@ -4,7 +4,7 @@
     "description": "WYSIWYG tinyMCE addon voor official pages extension",
     "homepage": "http://forumhulp.com",
     "version": "3.1.0",
-    "keywords": ["style", "forumhulp", "phpbb", "extension", "upload", "unzip", "zip"],
+    "keywords": ["style", "forumhulp", "phpbb", "extension", "pages", "tinymce", "wysiwyg"],
     "license": "GPL-2.0",
     "authors": [
         {
@@ -16,15 +16,15 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "phpbb/phpbb": "3.1.*@dev"
+		"composer/installers": "~1.0"
     },
     "require-dev": {
         "phpbb/epv": "dev-master"
     },
     "extra": {
-        "display-name": "Page Addon, a tinyMCE application for Pages",
+        "display-name": "Pages: TinyMCE WYSIWYG Add-on",
         "soft-require": {
-           "phpbb/phpbb": "3.1.*@dev"
+			"phpbb/phpbb": ">=3.1.0-RC3,<3.2.*@dev"
         },
         "version-check": {
             "host": "forumhulp.com",

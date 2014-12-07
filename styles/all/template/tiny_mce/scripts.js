@@ -1,6 +1,7 @@
 	tinymce.init({
 		selector: "textarea.mceEditor",
 		relative_urls: false,
+		language : lang,
 		plugins: [
 			"advlist autolink lists link image charmap print preview anchor",
 			"searchreplace visualblocks code fullscreen","pagebreak",
