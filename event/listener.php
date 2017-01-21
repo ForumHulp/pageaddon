@@ -9,26 +9,23 @@
 
 namespace forumhulp\pageaddon\event;
 
-/**
-* @ignore
-*/
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use phpbb\pagination;
+use phpbb\request\request;
+use phpbb\template\template;
+use phpbb\user;
 
 /**
 * Event listener
 */
 class listener implements EventSubscriberInterface
 {
-	/** @var \phpbb\pagination */
 	protected $pagination;
-	/** @var \phpbb\request\request */
 	protected $request;
-	/** @var \phpbb\template\template */
 	protected $template;
-	/** @var \phpbb\user */
 	protected $user;
 
-	public function __construct(\phpbb\pagination $pagination, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user)
+	public function __construct(pagination $pagination, request $request, template $template, user $user)
 	{
 		$this->pagination = $pagination;
 		$this->request = $request;
