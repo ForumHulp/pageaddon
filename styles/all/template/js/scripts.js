@@ -3,7 +3,7 @@
 		relative_urls: false,
 		language : lang,
 		plugins: [
-			"advlist autolink lists link image charmap print preview anchor",
+			"advlist autolink lists link image charmap print preview anchor bbcode",
 			"searchreplace visualblocks code fullscreen","pagebreak",
 			"insertdatetime media table contextmenu paste textcolor"
 		],
